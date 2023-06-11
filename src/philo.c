@@ -6,7 +6,7 @@
 /*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:13:22 by muganiev          #+#    #+#             */
-/*   Updated: 2023/06/11 18:49:23 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/06/11 19:45:22 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int	main(int ac, char **av)
 		return (ft_free(all));
 	if (init_time(all))
 		return (ft_free(all));
-	if (init_phiolo(all))
+	if (init_pilo(all))
 		return (ft_free(all));
 	philo_init_time_and_processes(all);
 	ft_destroy_mutex(all);

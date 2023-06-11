@@ -6,7 +6,7 @@
 /*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:13:22 by muganiev          #+#    #+#             */
-/*   Updated: 2023/06/11 18:49:23 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/06/11 19:45:22 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 // Inicialization stuctures of philosopher
 
-int	init_phiolo(t_table *table)
+int	init_pilo(t_table *table)
 {
 	int	i;
 

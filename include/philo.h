@@ -6,7 +6,7 @@
 /*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:13:28 by muganiev          #+#    #+#             */
-/*   Updated: 2023/06/11 18:49:23 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/06/11 19:45:22 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ long long	ft_atoi(const char *str);
 t_table		*init(int ac, char **av);
 int			init_time(t_table *all);
 int			ft_free(t_table	*all);
-int			init_phiolo(t_table *table);
+int			init_pilo(t_table *table);
 int			parse(int ac, char **av);
 long long	get_timestamp(void);
 void		print_philo(t_table *table, t_philo *philo, char *str);

@@ -3,60 +3,62 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+         #
+#    By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/03 16:13:32 by muganiev          #+#    #+#              #
-#    Updated: 2023/06/11 19:05:36 by muganiev         ###   ########.fr        #
+#    Updated: 2023/06/16 19:24:01 by muganiev         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME	= philo
+NAME 				= philo
+CC 					= gcc
+FLAGS 				= -Wall -Werror -Wextra
+INCLUDES 			= -I$(HEADERS_DIRECTORY)
 
-INCLUDE	= include/
+HEADERS_DIRECTORY 	= ./includes/
+HEADERS_LIST 		= philo.h
+HEADERS 			= $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
-SRC		= src/philo.c src/utils.c src/init.c src/philo_actions.c
+SOURCES_DIRECTORY 	= ./sources/
+SOURCES_LIST 		= philo.c utils.c log.c init.c parsing_arguments.c routin.c \
+						ph_states.c ph_control_state.c ph_utils.c \
+						ph_exit_state.c thred_s_t.c ph_fork.c
+SOURCES 			= $(addprefix $(SOURCES_DIRECTORY), $(SOURCES_LIST))
 
-OBJ		= $(SRC:%.c=%.o)
+OBJECTS_DIRECTORY 	= objects/
+OBJECTS_LIST 		= $(patsubst %.c, %.o, $(SOURCES_LIST))
+OBJECTS				= $(addprefix $(OBJECTS_DIRECTORY), $(OBJECTS_LIST))
 
-HEAD	= philo.h
-
-CC		= gcc
-
-FLAGS	= -Wall -Wextra -Werror -g -pthread #-fsanitize=thread
-
-#COLORS
-#------------------------------------------------------------------
-RED		=	\033[1;31m
-BLUE	=	\033[1;34m
-YELLOW	=	\033[1;33m
-GRN		=	\033[32m
-GRN_B	=	\033[1;32m
-WHT		=	\x1B[37m
-PUPURE	=	\033[1;35m
-MAG		=	\x1B[35m
-GRY		=	\033[1;30m
-TURQUOISE =	\033[36;1m
-END		=	\033[0m
-#--------------------------------------------------------------------
-
-.PHONY:		all	clean	fclean	re
+# COLORS
+GREEN 				= \033[0;32m
+RED 				= \033[0;31m
+RESET 				= \033[0m
 
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	$(CC) $(FLAGS) $(OBJ) -o $(NAME)
-	@echo "$(GRN)\n\t $(NAME) is complited \n $(END)"
+$(NAME): $(OBJECTS_DIRECTORY) $(OBJECTS)
+	@$(CC) $(FLAGS) $(OBJECTS) -lpthread $(INCLUDES) -o $(NAME)
+	@echo "\n$(NAME): $(GREEN)object files were created$(RESET)"
+	@echo "$(NAME): $(GREEN)$(NAME) was created$(RESET)"
 
-%.o: %.c $(INCLUDE)$(HEAD)
-		$(CC) $(FLAGS) -c $< -o $@ -I $(INCLUDE)
+$(OBJECTS_DIRECTORY):
+	@mkdir -p $(OBJECTS_DIRECTORY)
+	@echo "$(NAME): $(GREEN)$(OBJECTS_DIRECTORY) was created$(RESET)"
 
-clean:		
-	@rm -rf $(OBJ)
-	@echo "$(BLUE)\n\tCleaning $(NAME) succeed \n$(END)"
+$(OBJECTS_DIRECTORY)%.o : $(SOURCES_DIRECTORY)%.c $(HEADERS)
+	@$(CC) $(FLAGS) -c $(INCLUDES) $< -o $@
+	@echo ".\c"
 
-fclean:		clean
+clean:
+	@rm -rf $(OBJECTS_DIRECTORY)
+	@echo "$(NAME): $(RED)object files were deleted$(RESET)"
+
+fclean: clean
 	@rm -f $(NAME)
-	@echo "$(BLUE)\tDeleting $(NAME) succeed\n$(END)"
+	@echo "$(NAME): $(RED)$(NAME) was deleted$(RESET)"
 
-re:			fclean all
-	@echo "$(BLUE)\tRemake done\n$(END)"
+re:
+	@$(MAKE) fclean
+	@$(MAKE) all
+
+.PHONY: all bonus clean fclean re

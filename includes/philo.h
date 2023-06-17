@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:13:28 by muganiev          #+#    #+#             */
-/*   Updated: 2023/06/16 19:10:00 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:38:54 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,19 @@ typedef enum e_state
 	FINISHED,
 }	t_state;
 
-typedef struct s_thdata
+typedef struct st_thdata
 {
-	struct s_pinfo	*pinfo;
-	struct s_philo	*philo;
+	struct st_pinfo	*pinfo;
+	struct st_philo	*philo;
 }	t_thdata;
 
-typedef struct s_thsize_t
+typedef struct st_thsize_t
 {
 	pthread_mutex_t	mutex;
 	size_t			value;
 }	t_thsize_t;
 
-typedef struct s_philo
+typedef struct st_philo
 {
 	pthread_t		thid;
 	size_t			id;
@@ -58,12 +58,12 @@ typedef struct s_philo
 	size_t			rfork;
 	size_t			maskout_fork;
 	t_state			state;
-	int				(*action)(struct s_pinfo *pinfo, struct s_philo *philo);
+	int				(*action)(struct st_pinfo *pinfo, struct st_philo *philo);
 	size_t			createdt;
 	size_t			last_eatt;
 }	t_philo;
 
-typedef struct s_pinfo
+typedef struct st_pinfo
 {
 	size_t			amount;
 	size_t			time_to_die;
@@ -109,13 +109,13 @@ int				pstate_transition(t_pinfo *pinfo, t_philo *philo,
 					t_state next_state);
 
 // philo_utils
-size_t			philo_currt(t_philo *philo);
+size_t			philo_current_time(t_philo *philo);
 void			set_forks_status(t_pinfo *pinfo, t_philo *philo, size_t value);
 int				get_forks_status(t_pinfo *pinfo, t_philo *philo);
 void			update_meals(t_pinfo *pinfo, t_philo *philo);
 
 // init
-t_pinfo			*init_pinfo(size_t *params, int size);
+t_pinfo			*init_philosopher_info(size_t *params, int size);
 t_thdata		*init_thdata(t_pinfo *pinfo, t_philo *philo);
 t_philo			*init_philo(t_pinfo *pinfo);
 
@@ -123,11 +123,11 @@ t_philo			*init_philo(t_pinfo *pinfo);
 int				init_forks(t_pinfo *pinfo, size_t size);
 void			init_set_forks(t_philo *philo, int i, int amount);
 
-// parse_arg
-size_t			*parse_arg(char **av, int size);
+// parsing_arg
+size_t			*parsing_arg(char **av, int size);
 
 // utils
-int				ft_atol(const char *str, size_t *dst);
+int				character_to_long(const char *str, size_t *dst);
 size_t			ft_get_time(void);
 void			ft_usleep(size_t ms);
 

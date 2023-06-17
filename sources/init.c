@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:13:22 by muganiev          #+#    #+#             */
-/*   Updated: 2023/06/16 19:14:42 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:38:53 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	init_thsize_t(t_pinfo *pinfo)
 	return (0);
 }
 
-t_pinfo	*init_pinfo(size_t *params, int size)
+t_pinfo	*init_philosopher_info(size_t *params, int size)
 {
 	t_pinfo	*pinfo;
 

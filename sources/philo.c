@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:13:22 by muganiev          #+#    #+#             */
-/*   Updated: 2023/06/16 19:17:56 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:38:52 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static void	exit_app(t_pinfo *pinfo, t_philo *philos)
+static void	free_app(t_pinfo *pinfo, t_philo *philos)
 {
 	size_t	i;
 
@@ -30,7 +30,7 @@ static void	exit_app(t_pinfo *pinfo, t_philo *philos)
 	free(pinfo);
 }
 
-static int	start_threads(t_pinfo *pinfo, t_philo *philos)
+static int	init_threads(t_pinfo *pinfo, t_philo *philos)
 {
 	size_t	i;
 
@@ -53,20 +53,20 @@ static int	start_threads(t_pinfo *pinfo, t_philo *philos)
 	return (0);
 }
 
-static int	start_app(size_t *params, int size)
+static int	run_app(size_t *params, int size)
 {
 	t_pinfo	*pinfo;
 	t_philo	*philos;
 	int		status;
 
-	pinfo = init_pinfo(params, size);
+	pinfo = init_philosopher_info(params, size);
 	if (!pinfo || !pinfo->amount_to_eat)
 		return (1);
 	philos = init_philo(pinfo);
 	if (!philos)
 		return (1);
-	status = start_threads(pinfo, philos);
-	exit_app(pinfo, philos);
+	status = init_threads(pinfo, philos);
+	free_app(pinfo, philos);
 	return (status);
 }
 
@@ -76,8 +76,8 @@ int	main(int ac, char **av)
 	int		len;
 
 	len = ac - 1;
-	params = parse_arg(av + 1, len);
-	if (params && !start_app(params, len))
+	params = parsing_arg(av + 1, len);
+	if (params && !run_app(params, len))
 	{
 		free(params);
 		return (0);

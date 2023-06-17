@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ph_states.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:13:22 by muganiev          #+#    #+#             */
-/*   Updated: 2023/06/16 19:17:30 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:32:32 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	pstate_takeforks(t_pinfo *pinfo, t_philo *philo)
 int	pstate_eat(t_pinfo *pinfo, t_philo *philo)
 {
 	log_philo(pinfo, philo, GREEN, "is eating");
-	philo->last_eatt = philo_currt(philo);
+	philo->last_eatt = philo_current_time(philo);
 	if (pinfo->time_to_eat > pinfo->time_to_die)
 	{
 		ft_usleep(pinfo->time_to_die);

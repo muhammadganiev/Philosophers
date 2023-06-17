@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ph_control_state.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:13:22 by muganiev          #+#    #+#             */
-/*   Updated: 2023/06/16 19:16:11 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:32:32 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_pstate_valid(t_pinfo *pinfo, t_philo *philo)
 {
-	if (philo_currt(philo) - philo->last_eatt >= pinfo->time_to_die)
+	if (philo_current_time(philo) - philo->last_eatt >= pinfo->time_to_die)
 	{
 		philo->state = DIED;
 		return (0);

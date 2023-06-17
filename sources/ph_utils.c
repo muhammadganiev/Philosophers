@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ph_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: muganiev <muganiev@student.42abudhabi.a    +#+  +:+       +#+        */
+/*   By: muganiev <muganiev@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/03 16:13:22 by muganiev          #+#    #+#             */
-/*   Updated: 2023/06/16 19:17:44 by muganiev         ###   ########.fr       */
+/*   Updated: 2023/06/17 14:38:53 by muganiev         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-size_t	philo_currt(t_philo *philo)
+size_t	philo_current_time(t_philo *philo)
 {
 	return (ft_get_time() - philo->createdt);
 }
